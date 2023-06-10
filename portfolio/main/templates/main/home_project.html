@@ -1,0 +1,48 @@
+{% extends 'home.html' %}
+
+{% block content %}
+
+    <div class="flex">
+        <div class="text">
+            Привет, я <span class="highlight">Игорь Родин</span>.
+            <br>
+            Я python-разработчик.
+        </div>
+
+        <div class="button page-link">
+            <a href="{% url 'MainProject' %}">Мои работы <i class="mdi mdi-arrow-right"></i></a>
+        </div>
+    </div>
+
+{% endblock %}
+
+<!--<!DOCTYPE html>-->
+<!--{% load static %}-->
+<!--{% load cache %}-->
+<!--<html>-->
+<!--<head>-->
+<!--  <meta charset="UTF-8">-->
+<!--  <title>WebsiteIR</title>-->
+<!--    <link href="{% static 'bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">-->
+<!--    <link rel="stylesheet" type="text/css" href="{% static 'main/css/style.css' %}">-->
+<!--    <script src="{% static 'main/js/script.js' %}"></script>-->
+<!--    {% include 'inc/_nav.html' %}-->
+<!--</head>-->
+
+<!--<body>-->
+
+<!--    <div class="flex">-->
+<!--        <div class="text">-->
+<!--            Привет, я <span class="highlight">Игорь Родин</span>.-->
+<!--            <br>-->
+<!--            Я python-разработчик.-->
+<!--        </div>-->
+
+<!--        <div class="button page-link">-->
+<!--            <a href="{% url 'MainProject' %}">Мои работы <i class="mdi mdi-arrow-right"></i></a>-->
+<!--        </div>-->
+<!--    </div>-->
+
+<!--    <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>-->
+<!--</body>-->
+<!--</html>-->

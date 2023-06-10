@@ -1,0 +1,40 @@
+{% extends 'home.html' %}
+
+{% block content %}
+
+{% for item in project_by_category %}
+    <div class="card mb-3 mx-auto" style="width: 1300px; margin-top: 70px;">
+
+        <div class="card-header">
+            Категория: <a href="{{ item.category.get_absolute_url }}"> {{ item.category.title }}</a>
+        </div>
+
+        <div class="media" style="display:flex">
+
+            <div class="media-photo">
+                {% if item.photo %}
+                <img src="{{ item.photo.url }}" class="mr-3" width="300" alt="Photo">
+                {% else %}
+                <h6>Фото нет</h6>
+                {% endif %}
+            </div>
+
+            <div class="media-body" style="margin-left: 30px;">
+                <h5 class="card-title {% cycle 'text-success' 'text-danger' 'text-primary' %}">{{ item.name }}</h5>
+                {% autoescape off %}
+                <p class="card-text">{{ item.description|linebreaks }}</p>
+                {% endautoescape %}
+                <a href="{{ item.get_absolute_url }}" class="btn btn-primary">Read more...</a>
+                <a href="{{ item.link }}" class="btn btn-secondary" style="margin-left: 720px;">Ссылка</a>
+            </div>
+
+        </div>
+        <div class="card-footer text-muted">
+            <div class="date" style="margin-left: 550px;">
+                {{ item.created_at|date:'Y-m-d H:i' }}
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+
+{% endblock %}

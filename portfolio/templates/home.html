@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+{% load static %}
+{% load cache %}
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>WebsiteIR</title>
+    <link href="{% static 'bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{% static 'main/css/style.css' %}">
+    <script src="{% static 'main/js/script.js' %}"></script>
+    {% include 'inc/_nav.html' %}
+</head>
+<body>
+{% block content %} CONTENT {% endblock %}
+{% if page_obj.has_other_pages %}
+  <nav aria-label="..." style="margin-left: 850px;">
+  <ul class="pagination">
+
+      {% if page_obj.has_previous %}
+    <li class="page-item active">
+      <a class="page-link" href="?page={{ page_obj.previous_page_number }}">prev</a>
+    </li>
+      {% endif %}
+
+      {% for p in page_obj.paginator.page_range %}
+      {% if page_obj.number == p %}
+      <li class="page-item active" aria-current="page">
+          <a class="page-link" href="?page={{ p }}"> {{ p }} <span class="sr-only"></span> </a>
+      </li>
+
+      {% elif p > page_obj.number|add:-3 and p < page_obj.number|add:3 %}
+    <li class="page-item">
+        <a class="page-link" href="?page={{ p }}">{{ p }}</a>
+    </li>
+      {% endif %}
+
+      {% endfor %}
+
+      {% if page_obj.has_next %}
+    <li class="page-item active">
+      <a class="page-link" href="?page={{ page_obj.next_page_number }}">next</a>
+    </li>
+      {% endif %}
+  </ul>
+</nav>
+  {% endif %}
+    <script src="{% static 'bootstrap/js/bootstrap.min.js' %}"></script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+{% extends 'home.html' %}
+
+{% block content %}
+
+
+    <div class="card mb-3 mx-auto" style="width: 1300px; margin-top: 70px;">
+
+        <div class="card-header">
+            Категория: <a href="{{ project_item.category.get_absolute_url }}"> {{ project_item.category.title }}</a>
+        </div>
+
+        <div class="media" style="display:flex">
+
+            <div class="media-photo">
+                {% if project_item.photo %}
+                <img src="{{ project_item.photo.url }}" class="mr-3" width="300" alt="Photo">
+                {% else %}
+                <h6>Фото нет</h6>
+                {% endif %}
+            </div>
+
+            <div class="media-body" style="margin-left: 30px;">
+                <h5 class="card-title {% cycle 'text-success' 'text-danger' 'text-primary' %}">{{ project_item.name }}</h5>
+                {% autoescape off %}
+                <p class="card-text">{{ project_item.description|linebreaks }}</p>
+                {% endautoescape %}
+                <a href="{{ item.link }}" class="btn btn-secondary float-right">Ссылка</a>
+            </div>
+
+        </div>
+
+        <div class="card-footer text-muted">
+            <div class="date" style="margin-left: 550px;">
+                {{ project_item.created_at|date:'Y-m-d H:i' }}
+            </div>
+        </div>
+
+    </div>
+
+{% endblock %}
